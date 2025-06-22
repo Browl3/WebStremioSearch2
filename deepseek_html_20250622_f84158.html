@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stremio Search</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f111a, #1f2235);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin-top: 8vh;
+            text-align: center;
+        }
+        
+        .logo-container {
+            margin-bottom: 40px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 15px;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: auto;
+            border-radius: 14px;
+        }
+        
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(to right, #8a2be2, #00bfff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+        }
+        
+        .tagline {
+            font-size: 18px;
+            color: #a0a0d8;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .search-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 5px 20px;
+            display: flex;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .search-container:focus-within {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 15px 10px;
+            font-size: 18px;
+            color: white;
+            outline: none;
+        }
+        
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .search-btn {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(106, 17, 203, 0.5);
+        }
+        
+        .search-btn i {
+            color: white;
+            font-size: 20px;
+        }
+        
+        .examples {
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+        }
+        
+        .examples p {
+            margin-bottom: 15px;
+        }
+        
+        .examples span {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .examples span:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            margin-top: auto;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                margin-top: 5vh;
+            }
+            
+            .logo {
+                width: 90px;
+                height: 90px;
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            .tagline {
+                font-size: 16px;
+            }
+            
+            .search-container {
+                padding: 5px 15px;
+            }
+            
+            .search-input {
+                font-size: 16px;
+                padding: 12px 8px;
+            }
+            
+            .search-btn {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .examples span {
+                display: block;
+                margin: 8px auto;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <div class="logo">
+                <img src="https://cdn2.steamgriddb.com/icon/edb484b38d130b891ca248fa171b274d.png" alt="Stremio Logo">
+            </div>
+            <h1>Stremio Search</h1>
+            <p class="tagline">Search for movies, series, and channels on Stremio</p>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search Stremio..." autocomplete="off" autofocus>
+            <button class="search-btn" id="searchButton">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        
+        <div class="examples">
+            <p>Try searching for:</p>
+            <div>
+                <span>Action Movies</span>
+                <span>Sci-Fi Series</span>
+                <span>Documentaries</span>
+                <span>Anime</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2023 Stremio Search - This is a fan-made interface for Stremio</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+            const exampleSpans = document.querySelectorAll('.examples span');
+            
+            // Search function
+            function searchStremio() {
+                const query = searchInput.value.trim();
+                if (query) {
+                    const encodedQuery = encodeURIComponent(query);
+                    window.location.href = `https://web.stremio.com/#/search?query=${encodedQuery}`;
+                }
+            }
+            
+            // Event listeners
+            searchButton.addEventListener('click', searchStremio);
+            
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchStremio();
+                }
+            });
+            
+            // Example search terms
+            exampleSpans.forEach(span => {
+                span.addEventListener('click', function() {
+                    searchInput.value = this.textContent;
+                    searchStremio();
+                });
+            });
+            
+            // Focus the input field
+            searchInput.focus();
+        });
+    </script>
+</body>
+</html>
